@@ -1,6 +1,23 @@
 ##Programmers: Daniel Bottomly with assistance from Peter Ryabinin
 ##A set of functions to prioritize genes based on one or more samples being differentially expressed
 
+default.weight.func=function(x) as.matrix(dist(t(x)))
+
+setGeneric("outlyingDegree", def=function(obj,...) standardGeneric("outlyingDegree"))
+setMethod("outlyingDegree", signature("ExpressionSet"), function(obj, k, type=c("non.weight", "weight.before", "weight.after"), weight.func=default.weight.func)
+          {
+                type = match.arg(type)
+                
+                if(!is.function(weight.func))
+                {
+                    stop("ERROR: weight.func needs to be a function")
+                }
+                
+                use.exprs <- exprs(obj)
+                add.params <- list(od.k=k, weight.func=weight.func)
+                
+                return(switch(type, non.weight=od.matrix(use.exprs, list(od.k=k)), weight.before=weight.od.b(use.exprs, add.params), weight.after=weight.od.a(use.exprs, add.params)))
+          })
 
 #these two based off of the original POD and spatial weighted outlier detection by Kou, Lu and Chen
 weight.od.b <- function(exprs, add.params)
@@ -111,8 +128,7 @@ od.matrix <- function(exprs, add.params)
     
     scaled.od.vals <- weight.od.b(exprs, add.params)
     
-    #the *19 corrects for the scaling by the sum of the weights done in weight.od.b
-    return(scaled.od.vals*19)
+    return(scaled.od.vals*(ncol(exprs)-1))
     
 }
 

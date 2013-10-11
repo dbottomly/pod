@@ -1,10 +1,12 @@
 Package: pod
-Version: 0.99.01
+Version: 0.99.02
 Date: 2013-10-10
 Title: Tools for patient-specific expression outlier detection
 Author: Daniel Bottomly
 Maintainer: Daniel Bottomly <bottomly@ohsu.edu>
+Imports: Biobase
 Depends: R (>= 2.15.0)
+Suggests: oligo
 Description: An implementation of outlier detection methods discussed in the paper 'Comparison of methods to identify aberrant expression patterns in individual patients: augmenting our toolkit for precision medicine'.  Additional related approaches may be added in the future. 
 License: GPL-3
 Collate:methods.R

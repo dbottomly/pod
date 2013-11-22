@@ -19,6 +19,59 @@ setMethod("outlyingDegree", signature("ExpressionSet"), function(obj, k, type=c(
                 return(switch(type, non.weight=od.matrix(use.exprs, list(od.k=k)), weight.before=weight.od.b(use.exprs, add.params), weight.after=weight.od.a(use.exprs, add.params)))
           })
 
+setMethod("outlyingDegree", signature("matrix"), function(obj, k, type=c("non.weight", "weight.before", "weight.after"), weight.func=default.weight.func)
+          {
+                type = match.arg(type)
+                
+                if(!is.function(weight.func))
+                {
+                    stop("ERROR: weight.func needs to be a function")
+                }
+                
+                use.exprs <- obj
+                add.params <- list(od.k=k, weight.func=weight.func)
+                
+                return(switch(type, non.weight=od.matrix(use.exprs, list(od.k=k)), weight.before=weight.od.b(use.exprs, add.params), weight.after=weight.od.a(use.exprs, add.params)))
+          })
+
+setGeneric("zScore", def=function(obj,...) standardGeneric("zScore"))
+setMethod("zScore", signature("ExpressionSet"), function(obj, robust=FALSE)
+          {
+            if (length(robust) != 1 || is.logical(robust) == FALSE)
+            {
+                stop("ERROR: the robust parameter needs to be a single logical value")
+            }
+            
+            if (robust == TRUE)
+            {
+                return(robust.z(exprs(obj), add.params=NULL))
+            }
+            else
+            {
+                return(zscore.matrix(exprs(obj), add.params=NULL))
+            }
+            
+          })
+          
+setMethod("zScore", signature("matrix"), function(obj, robust=FALSE)
+          {
+            if (length(robust) != 1 || is.logical(robust) == FALSE)
+            {
+                stop("ERROR: the robust parameter needs to be a single logical value")
+            }
+            
+            if (robust == TRUE)
+            {
+                return(robust.z(obj, add.params=NULL))
+            }
+            else
+            {
+                return(zscore.matrix(obj, add.params=NULL))
+            }
+            
+          })
+
+
 #these two based off of the original POD and spatial weighted outlier detection by Kou, Lu and Chen
 weight.od.b <- function(exprs, add.params)
 {

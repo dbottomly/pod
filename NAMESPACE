@@ -1,2 +1,3 @@
 importClassesFrom(Biobase, ExpressionSet)
-export(outlyingDegree)
+
+export(outlyingDegree,zScore)

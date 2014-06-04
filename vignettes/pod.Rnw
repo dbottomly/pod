@@ -29,11 +29,11 @@ sampleNames <- c('09206', '09788', '09562', '09177', '09182', '09624', '08431', 
     '08A_A11H1_09182_432BD.CEL', '012A_A11H1_09624_432BD.CEL', '011A_A11H1_08431_432BD.CEL', '010A_A11H1_T119_432BD.CEL',
     '014A_A11H1_09076_432BD.CEL', '06A_A11H1_08419_432BD.CEL', '07A_A11H1_08118_432BD.CEL', '015A_A11H1_09190_432BD.CEL')
     
-    cel.dir <- "/Users/bottomly/Desktop/github_projects/pod_vignette/432BD_CELS"
+    cel.dir <- "/Users/bottomly/Desktop/github/pod_vignette/432BD_CELS"
     
     affy.exprs <- read.celfiles(filenames=file.path(cel.dir, filenames), sampleNames=sampleNames, pkgname="pd.huex.1.0.st.v2")
     
-    norm.eset <- rma(object=affy.exprs, background=TRUE, normalize=TRUE, subset=NULL, target="probeset")
+    norm.eset <- rma(object=affy.exprs, background=TRUE, normalize=TRUE, subset=NULL, target="core")
 @
 
 Using our \texttt{norm.eset} object, we can now compute our outlier statistics, for instance the outlying degree, Zscore and Rscore as below.

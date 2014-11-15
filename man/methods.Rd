@@ -30,11 +30,16 @@ Daniel Bottomly
 }
 
 \examples{
-set.seed(123)
-cur.mat <- matrix(rnorm(20000), ncol=20, nrow=1000, dimnames=list(paste0("gene", 1:1000), paste0("samp", 1:20)))
-cur.eset <- Biobase::ExpressionSet(assayData=cur.mat)
-stopifnot(all.equal(outlyingDegree(cur.mat, k=1), outlyingDegree(cur.eset, k=1)))
-stopifnot(all.equal(zScore(cur.mat), zScore(cur.eset)))
+data(simEset)
+out.deg.eset <- outlyingDegree(cur.eset, k=1)
+cur.mat <- exprs(simEset)
+out.deg.mat <- outlyingDegree(cur.mat, k=1)
+all.equal(out.deg.eset, out.deg.mat)
+
+zscore.eset <- zScore(cur.eset)
+zscore.mat <- zScore(cur.mat)
+
+all.equal(zscore.eset, zscore.mat)
 }
 	
 \keyword{utilities}

@@ -23,6 +23,7 @@ Basic usage
 See the vignette for typical usage:
 
 library(pod)
+
 vignette("pod")
 
 How to contribute

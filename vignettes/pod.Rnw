@@ -31,15 +31,15 @@ Using our \texttt{simExprst} ExpressionSet object, we can now compute our outlie
 
 <<>>=
 
-norm.out.deg <- outlyingDegree(simEset), k=5)
+norm.out.deg <- outlyingDegree(simEset, k=5)
 
 norm.out.deg[1:5,1:5]
 
-norm.zscore <- zScore(simEset), robust=FALSE)
+norm.zscore <- zScore(simEset, robust=FALSE)
 
 norm.zscore[1:5,1:5]
 
-norm.rscore <- zScore(simEset), robust=TRUE)
+norm.rscore <- zScore(simEset, robust=TRUE)
 
 norm.rscore[1:5,1:5]
 
@@ -49,7 +49,7 @@ Similarly, we can compute these values using a plain matrix.
 
 <<>>=
 
-norm.exprs <- exprs(simEset))
+norm.exprs <- exprs(simEset)
 
 norm.out.deg.mat <- outlyingDegree(norm.exprs, k=5)
 

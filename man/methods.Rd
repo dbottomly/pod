@@ -31,12 +31,12 @@ Daniel Bottomly
 
 \examples{
 data(simEset)
-out.deg.eset <- outlyingDegree(cur.eset, k=1)
+out.deg.eset <- outlyingDegree(simEset, k=1)
 cur.mat <- exprs(simEset)
 out.deg.mat <- outlyingDegree(cur.mat, k=1)
 all.equal(out.deg.eset, out.deg.mat)
 
-zscore.eset <- zScore(cur.eset)
+zscore.eset <- zScore(simEset)
 zscore.mat <- zScore(cur.mat)
 
 all.equal(zscore.eset, zscore.mat)

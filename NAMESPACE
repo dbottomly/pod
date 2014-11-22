@@ -1,5 +1,3 @@
 import(methods)
-importClassesFrom(Biobase, ExpressionSet)
-importFrom(Biobase, ExpressionSet, exprs)
-
+import(Biobase)
 export(outlyingDegree,zScore)

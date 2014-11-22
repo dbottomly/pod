@@ -1,10 +1,9 @@
 Package: pod
-Version: 0.99.04
+Version: 0.99.05
 Date: 2013-10-10
 Title: Tools for patient-specific expression outlier detection
 Authors@R: c(person("Daniel", "Bottomly", role=c("aut", "cre"), email="bottomly@ohsu.edu"),person("Heather", "Turner", role="ctb"), person("Peter", "Ryabinin", role="ctb"), person("Beth", "Wilmot", role="aut"), person("Shannon", "McWeeney", role="aut"))
-Imports: Biobase
-Depends: R (>= 3.1.0),methods
+Depends: R (>= 3.1.0),methods, Biobase
 Description: An implementation of outlier detection methods discussed in the paper 'Comparison of methods to identify aberrant expression patterns in individual patients: augmenting our toolkit for precision medicine'.  Additional related approaches may be added in the future. 
 License: GPL-3
 Collate:methods.R
